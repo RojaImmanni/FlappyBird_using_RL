@@ -4,13 +4,11 @@ class Baseline_Agent():
         self.actions = actions
         self.game = Game()
 
-
     def select_action(self, state):
         """Select an action in a random manner"""
         if random.random() < 0.5:
             return 0
         return 1
-
 
     def train(self, n_iters, n_iters_eval):
         """ Train the agent"""
@@ -27,13 +25,12 @@ class Baseline_Agent():
                 print("Iter: ", i)
 
             if (i + 1) % 500 == 0:
-                max_score = self.evaluate(n_iter = n_iters_eval)
+                max_score = self.evaluate(n_iter=n_iters_eval)
                 test_scores.append(max_score)
 
-        df = pd.DataFrame(test_scores,columns=['scores'])
+        df = pd.DataFrame(test_scores, columns=['scores'])
         df.to_csv("baseline.csv")
         self.game.close()
-
 
     def evaluate(self, n_iter):
         """evaluates the agent"""
@@ -45,7 +42,6 @@ class Baseline_Agent():
         max_score = 0
         max_reward = 0
         output = defaultdict(int)
-
 
         for i in range(n_iter):
             score = 0
@@ -63,8 +59,10 @@ class Baseline_Agent():
                     break
 
             output[score] += 1
-            if score > max_score: max_score = score
-            if total_reward > max_reward: max_reward = total_reward
+            if score > max_score:
+                max_score = score
+            if total_reward > max_reward:
+                max_reward = total_reward
 
         self.game.close()
         print("Max Score on Evaluation: ", max_score)

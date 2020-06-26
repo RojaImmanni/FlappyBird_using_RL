@@ -10,18 +10,21 @@ from collections import defaultdict
 import os
 import sys
 sys.path.append("/path/to/PyGame-Learning-Environment")
-os.environ["SDL_VIDEODRIVER"] = "dummy" # to disable the python game window popup
+# to disable the python game window popup
+os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 
 class Game(gym.Env):
     def __init__(self, display_screen=False, force_fps=True):
-        os.environ["SDL_VIDEODRIVER"] = "dummy" # to disable the python game window popup
+        os.environ["SDL_VIDEODRIVER"] = "dummy"
         game = FlappyBird()  # define and initiate the environment
-        self.env = PLE(game, fps=30, display_screen=display_screen, force_fps=force_fps)
+        self.env = PLE(game, fps=30, display_screen=display_screen,
+                       force_fps=force_fps)
         self.env.init()
-        self.actions = self.env.getActionSet()  # list of actions in the environment
-        self.action_space = spaces.Discrete(len(self.actions))  # length of actions
-
+        # list of actions in the environment
+        self.actions = self.env.getActionSet()
+        # length of actions
+        self.action_space = spaces.Discrete(len(self.actions))
 
     def step(self, action):
         """Take the action chosen and update the reward"""
@@ -38,7 +41,6 @@ class Game(gym.Env):
 
         return state, reward, terminal, {}
 
-
     def getGameState(self):
         '''
         PLEenv return gamestate as a dictionary. Returns a modified form
@@ -51,13 +53,11 @@ class Game(gym.Env):
 
         return ' '.join([str(vel), str(h_dist), str(v_dist)])
 
-
     def reset(self):
         """Resets the game to start a new game"""
         self.env.reset_game()
         state = self.env.getGameState()
         return state
-
 
     def seed(self, seed):
         rng = np.random.RandomState(seed)

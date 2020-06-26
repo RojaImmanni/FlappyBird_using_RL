@@ -24,8 +24,9 @@ class SARSA_Agent():
     def update_Q(self, state, action, reward, next_state, next_action):
         """Update the Q value based on SARSA on-policy"""
 
-        self.Q[(state, action)] = (1 - self.alpha) * self.Q.get((state, action), 0) \
-        + self.alpha * (reward + self.discount * self.Q.get((next_state, next_action), 0))
+        self.Q[(state, action)] = (1 - self.alpha) * \
+            self.Q.get((state, action), 0) + self.alpha * \
+            (reward + self.discount * self.Q.get((next_state, next_action), 0))
 
     def train(self, n_iters, n_iters_eval):
         """ Train the agent"""
@@ -44,12 +45,15 @@ class SARSA_Agent():
             ob = self.game.reset()
             list_sarsa = []
             state = self.game.getGameState()
-            action = self.select_action(state)  # find the nest best action based on e-greedy approach
+            # find the next best action based on e-greedy approach
+            action = self.select_action(state)
 
             while True:
-                next_state, reward, done, _ = self.game.step(action)  # take the action and find the next step
+                # take the action and find the next step
+                next_state, reward, done, _ = self.game.step(action)
                 next_action = self.select_action(next_state)
-                list_sarsa.append((state, action, reward, next_state, next_action))
+                list_sarsa.append((state, action, reward, next_state,
+                                   next_action))
                 state = next_state
                 action = next_action
 
@@ -59,8 +63,10 @@ class SARSA_Agent():
                 if done:
                     break
 
-            if score > max_score: max_score = score
-            if total_reward > max_reward: max_reward = total_reward
+            if score > max_score:
+                max_score = score
+            if total_reward > max_reward:
+                max_reward = total_reward
 
             for (state, action, reward, next_state, next_action) in list_sarsa:
                 self.update_Q(state, action, reward, next_state, next_action)
@@ -70,10 +76,10 @@ class SARSA_Agent():
 
             # Evaluate the model after every 500 iterations
             if (i + 1) % 500 == 0:
-                max_score = self.evaluate(n_iter = n_iters_eval)
+                max_score = self.evaluate(n_iter=n_iters_eval)
                 test_scores.append(max_score)
 
-        df = pd.DataFrame(test_scores,columns=['scores'])
+        df = pd.DataFrame(test_scores, columns=['scores'])
         df.to_csv("sarsa.csv")
         self.game.close()
 
@@ -104,8 +110,10 @@ class SARSA_Agent():
                     break
 
             output[score] += 1
-            if score > max_score: max_score = score
-            if total_reward > max_reward: max_reward = total_reward
+            if score > max_score:
+                max_score = score
+            if total_reward > max_reward:
+                max_reward = total_reward
 
         self.game.close()
         print("Max Score on Evaluation: ", max_score)

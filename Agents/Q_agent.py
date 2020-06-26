@@ -26,12 +26,12 @@ class Q_Agent():
 
         next_Q = [self.Q.get((next_state, a), 0) for a in self.actions]
         best_value = max(next_Q)
-        self.Q[(state, action)] = (1 - self.alpha) * self.Q.get((state, action), 0) \
-                                   + self.alpha * (reward + self.discount * best_value)
+        self.Q[(state, action)] = (1 - self.alpha) * \
+            self.Q.get((state, action), 0) + self.alpha * \
+            (reward + self.discount * best_value)
 
     def train(self, n_iters, n_iters_eval):
         """ Train the agent"""
-
 
         done = False
         max_score = 0
@@ -49,7 +49,8 @@ class Q_Agent():
             state = self.game.getGameState()
 
             while True:
-                action = self.select_action(state) # find the nest best action based on e-greedy approach
+                # find the nest best action based on e-greedy approach
+                action = self.select_action(state)
                 next_state, reward, done, _ = self.game.step(action)
                 list_sarsa.append((state, action, reward, next_state))
                 state = next_state
@@ -60,8 +61,10 @@ class Q_Agent():
                 if done:
                     break
 
-            if score > max_score: max_score = score
-            if total_reward > max_reward: max_reward = total_reward
+            if score > max_score:
+                max_score = score
+            if total_reward > max_reward:
+                max_reward = total_reward
 
             for (state, action, reward, next_state) in list_sarsa[::-1]:
                 self.update_Q(state, action, reward, next_state)
@@ -71,10 +74,10 @@ class Q_Agent():
 
             # Evaluate the model after every 500 iterations
             if (i + 1) % 500 == 0:
-                max_score = self.evaluate(n_iter = n_iters_eval)
+                max_score = self.evaluate(n_iter=n_iters_eval)
                 list_scores.append(max_score)
 
-        df = pd.DataFrame(test_scores,columns=['scores'])
+        df = pd.DataFrame(test_scores, columns=['scores'])
         df.to_csv("qlearning.csv")
         self.game.close()
 
@@ -105,8 +108,10 @@ class Q_Agent():
                     break
 
             output[score] += 1
-            if score > max_score: max_score = score
-            if total_reward > max_reward: max_reward = total_reward
+            if score > max_score:
+                max_score = score
+            if total_reward > max_reward:
+                max_reward = total_reward
 
         self.game.close()
         print("Max Score on Evaluation: ", max_score)
