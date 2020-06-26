@@ -16,6 +16,10 @@ For this game, We can frame the RL problem in the following way
 - Actions: Actions would be either to do nothing or jump
 - Rewards: positive reward(+1) if the bird is still alive and negative reward(-1000) if it hits and dies
 
+## Methods:
+We have tried the on-policy(SARSA) and off-policy technique(Q-Learning) with the epsilon-greedy approach and compared it with the baseline model 
+Baseline: For the baseline model, we picked an agent that picks the next action randomly. The actions space contains (0, 1) where 0 stands for jump, and 1 stands for doing nothing. Random agent picks each of these actions with probability 0.5.
+
 ## Code files
 Code for environment can be found at https://github.com/RojaImmanni/FlappyBird_using_RL/blob/master/Game/environment.py
 
