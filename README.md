@@ -16,15 +16,17 @@ For this game, We can frame the RL problem in the following way
 - Rewards: positive reward(+1) if the bird is still alive and negative reward(-1000) if it hits and dies
 
 ## Code files
-Code for environment can be found at https://github.com/RojaImmanni/Flappy-Bird-using-RL/blob/master/environment.py
+Code for environment can be found at https://github.com/RojaImmanni/FlappyBird_using_RL/blob/master/Game/environment.py
 
-Code for random agent can be found at https://github.com/RojaImmanni/Flappy-Bird-using-RL/blob/master/RandomAgent.py
+Code for random agent can be found at https://github.com/RojaImmanni/FlappyBird_using_RL/blob/master/Agents/Baseline_agent.py
 
-Code for a trainable agent can be found at https://github.com/RojaImmanni/Flappy-Bird-using-RL/blob/master/TrainableAgent.py
+Code for a Q-Learning agent can be found at https://github.com/RojaImmanni/FlappyBird_using_RL/blob/master/Agents/Q_agent.py
+
+Code for a SARSA agent can be found at https://github.com/RojaImmanni/FlappyBird_using_RL/blob/master/Agents/SARSA_agent.py
 
 
 
 
 
-Resources:
+## Resources:
 1. https://arxiv.org/pdf/2003.09579v1.pdf
