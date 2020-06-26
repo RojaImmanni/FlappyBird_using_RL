@@ -29,9 +29,11 @@ Code for a SARSA agent can be found at https://github.com/RojaImmanni/FlappyBird
 The figure below shows the maximum score by different models when trained for 40,000 iterations. Clearly we have better results with both the models compared to the baseline model i.e the random agent. There is a huge performance difference between SARSA and Q-learning. Q-learning algorithm has achieved higher scores in a lesser number of iterations. Q-Learning performed better over SARSA which would be because Q-learning is an off-policy that uses the optimal policy directly estimating the optimal policy quicker than SARSA which is on-policy learning and it has to go through all the combinations of the actions at every state to find the best policy.
 
 Figure 1 compares the results of SARSA model with baseline
+
 ![](Images/Q.png)
 
 Figure 2 compares the results of Q-Learning model with baseline
+
 ![](Images/SARSA.png)
 
 ## Final Model:
