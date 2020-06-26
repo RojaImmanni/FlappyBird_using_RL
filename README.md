@@ -1,11 +1,19 @@
 # Flappy-Bird-using-RL
-Training an agent to play Flappy Bird using Q learning
+The code in this repository is used to train agents to play FlappyBird using techniques from reinforcement learning. Q-Learning and SARSA are implemented.
 
 ## Names:
 Roja Immanni
 
-## Finalized Research Question:
-Is it possible to train an RL agent to play FlappyBird game forever?
+## Research Question:
+We applied different Reinforcement Learning algorithms train an agent to play FlappyBird game forever?
+
+## Reinforcement Learning Framework
+For this game, We can frame the RL problem in the following way
+- Environment: Flappybird's game space
+- Agent: Agent is the flappybird who decides either to do nothing or jump
+- States: Flappybird's vertical distance from the ground, horizontal distance from the next pipe and its speed
+- Actions: Actions would be either to do nothing or jump
+- Rewards: positive reward(+1) if the bird is still alive and negative reward(-1000) if it hits and dies
 
 ## Code files
 Code for environment can be found at https://github.com/RojaImmanni/Flappy-Bird-using-RL/blob/master/environment.py
@@ -14,15 +22,9 @@ Code for random agent can be found at https://github.com/RojaImmanni/Flappy-Bird
 
 Code for a trainable agent can be found at https://github.com/RojaImmanni/Flappy-Bird-using-RL/blob/master/TrainableAgent.py
 
-## List of ideas to finish project:
-
-- The state of the project is a pixel image of 3 channels. Process this image data input to convert its representation to get x, y position and speed. 
-- We implement Q-learning with ε-greedy approach
-
 
 
 
 
 Resources:
 1. https://arxiv.org/pdf/2003.09579v1.pdf
-2. https://github.com/taivu1998/FlapAI-Bird
